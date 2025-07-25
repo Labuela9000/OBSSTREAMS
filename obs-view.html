@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vista OBS - Comparaciones</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .marco-unico {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #00d0ff33, #002e3e66);
+      border: 4px solid #00d0ff;
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 0 25px rgba(0, 208, 255, 0.4);
+      gap: 10px;
+      animation: fadein 1s ease;
+      position: relative;
+    }
+
+    .imagen-comparacion {
+      width: 120px;  /* escala de marco para las imagenes el inicio es 360 */
+      height: 100px;
+      object-fit: contain;
+      animation: flotante 6s ease-in-out infinite alternate;
+      transition: opacity 1s ease;
+      opacity: 1;
+    }
+
+    .imagen-comparacion.fade-out {
+      opacity: 0;
+    }
+
+    .texto-comparacion {
+      margin-top: 20px;
+      font-size: 1.6rem;
+      padding: 12px 24px;
+      background: rgba(0, 208, 255, 0.15);
+      border: 2px solid #00d0ff;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes flotante {
+      0%   { transform: translateY(0px) scale(1); }
+      50%  { transform: translateY(-5px) scale(1.01); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marco-unico">
+    <img id="img1" class="imagen-comparacion" src="" alt="Imagen 1">
+    <img id="img2" class="imagen-comparacion" src="" alt="Imagen 2">
+  </div>
+
+  <div id="texto" class="texto-comparacion">Cargando comparaciones...</div>
+
+  <script>
+    const comparaciones = JSON.parse(localStorage.getItem('comparaciones')) || [];
+    let index = 0;
+
+    const img1 = document.getElementById('img1');
+    const img2 = document.getElementById('img2');
+    const texto = document.getElementById('texto');
+
+    function mostrarComparacion() {
+      if (comparaciones.length === 0) {
+        texto.textContent = "No hay comparaciones guardadas.";
+        img1.src = "";
+        img2.src = "";
+        return;
+      }
+
+      // Aplica clase fade-out
+      img1.classList.add("fade-out");
+      img2.classList.add("fade-out");
+
+      setTimeout(() => {
+        const actual = comparaciones[index];
+
+        img1.src = actual.img1;
+        img2.src = actual.img2;
+        texto.textContent = actual.texto;
+
+        // Quita clase para mostrar con fade-in
+        img1.classList.remove("fade-out");
+        img2.classList.remove("fade-out");
+
+        index = (index + 1) % comparaciones.length;
+      }, 1000); // Tiempo de fade-out antes de mostrar la siguiente
+    }
+
+    mostrarComparacion();
+    setInterval(mostrarComparacion, 5000); // Cambia cada 5 segundos
+  </script>
+
+</body>
+</html>

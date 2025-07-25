@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides Stream</title>
+  <link rel="stylesheet" href="slides-stream.css">
+</head>
+<body>
+  <section class="slides-stream">
+    <h1>Slides para Stream - Comparación</h1>
+
+    <!-- Formulario de carga de dos imágenes -->
+    <div class="formulario-carga">
+      <!-- Imagen 1 -->
+      <div class="carga-individual">
+        <h3>Imagen 1</h3>
+        <input type="file" accept="image/*" onchange="cargarImagenLocal(this, 1)">
+        <input type="text" placeholder="o pega una URL" onblur="cargarImagenURL(this, 1)">
+        <img id="preview1" class="preview" src="">
+      </div>
+
+      <!-- Imagen 2 -->
+      <div class="carga-individual">
+        <h3>Imagen 2</h3>
+        <input type="file" accept="image/*" onchange="cargarImagenLocal(this, 2)">
+        <input type="text" placeholder="o pega una URL" onblur="cargarImagenURL(this, 2)">
+        <img id="preview2" class="preview" src="">
+      </div>
+    </div>
+
+    <!-- Texto de pie de imagen -->
+    <textarea id="textoPie" rows="2" placeholder="Texto para esta comparación..."></textarea>
+
+    <!-- Botón para guardar comparación -->
+    <button onclick="guardarComparacion()">Guardar Comparación</button>
+
+    <!-- Lista de comparaciones guardadas -->
+    <h2>Comparaciones Guardadas</h2>
+    <div id="listaComparaciones" class="lista-comparaciones"></div>
+
+    <!-- Galería de imágenes cargadas -->
+    <h2>Galería de imágenes cargadas</h2>
+    <div id="galeriaImagenes" class="galeria-imagenes"></div>
+  </section>
+
+  <script src="slides-stream.js"></script>
+</body>
+</html>

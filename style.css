@@ -1,0 +1,123 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #f5fafd;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #0a0a0a;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: #00c8c8;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 12px;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #00c8c8;
+  color: black;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Slides Stream */
+.slides-form {
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.slides-form input, .slides-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.slides-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.preview-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 12px;
+  width: 160px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.preview-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* OBS View Styling */
+.obs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.obs-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  animation: fadein 1s ease-in-out;
+}
+
+.obs-image-container img {
+  max-height: 300px;
+  max-width: 40%;
+  object-fit: contain;
+  border-radius: 16px;
+  transition: transform 1s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 200, 200, 0.3);
+}
+
+.obs-caption {
+  position: absolute;
+  bottom: 30px;
+  color: white;
+  font-size: 24px;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
